@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index]
   skip_before_filter :verify_authenticity_token
 
   def index
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :pwd)
+    params.require(:user).permit(:first_name, :last_name, :email, :pwd, :password)
   end
 
 end
