@@ -1,11 +1,5 @@
 class SessionsController < Devise::SessionsController
-  respond_to :html, :json
-
-  def new
-    @rants = Rant.all
-    render json: @rants
-  end
-
+  respond_to :json
 
   def create
     super do |user|
