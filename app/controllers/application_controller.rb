@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   include ActionController::HttpAuthentication::Token::ControllerMethods
 
   before_filter :authenticate_user_from_token!
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   private
 
@@ -14,5 +15,10 @@ class ApplicationController < ActionController::Base
         sign_in user, store: false
       end
     end
+  end
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) << [:first_name, :last_name]
   end
 end
