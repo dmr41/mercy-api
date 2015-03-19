@@ -1,8 +1,11 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :create]
   skip_before_filter :verify_authenticity_token
-
+  # after_action :authenticate_user!
+  respond_to :json
+  
   def index
+
     render json: User.all
   end
 
@@ -10,10 +13,13 @@ class UsersController < ApplicationController
     render json: User.find(params[:id])
   end
 
+
   def create
     @user = User.new(user_params)
-    @user.save
-    render json: @user
+    if  @user.save
+      sign_in @user
+      render json: @user
+    end
   end
 
   def destroy
@@ -23,7 +29,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :pwd, :password)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
   end
 
 end

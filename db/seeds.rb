@@ -9,34 +9,34 @@ User.delete_all
 Rant.delete_all
 user1 =User.create!(first_name: "Dally",
                     last_name:"Dilly",
-                    email:"d@w.com",
-                    pwd: "d",
-                    password: "password")
+                    email:"yoe@wast.com",
+                    password: "password",
+                    password_confirmation: "password")
 
 user2 =User.create!(first_name: "John",
                     last_name:"lenoard",
-                    email:"hh@w.com",
-                    pwd: "j",
-                    password: "password")
+                    email:"hdos@wasts.com",
+                    password: "password",
+                    password_confirmation: "password")
 
 
 user3 =User.create!(first_name: "Chilly",
                     last_name:"Willy",
-                    email:"c@w.com",
-                    pwd: "c",
-                    password: "password")
+                    email:"cdos@wast.com",
+                    password: "password",
+                    password_confirmation: "password")
 
 user4 =User.create!(first_name: "Jeff",
                     last_name:"Dean",
                     email:"jeff@zilkey.com",
-                    pwd: "password",
-                    password: "password")
+                    password: "password",
+                    password_confirmation: "password")
 
 user5 =User.create!(first_name: "Jeanette",
                     last_name:"Sibily",
                     email:"ss@ww.com",
-                    pwd: "ss",
-                    password: "password")
+                    password: "password",
+                    password_confirmation: "password")
 
 rant1 = Rant.create!(user_id: user2.id, title: "Loving it", body: "Seriously loving it")
 rant2 = Rant.create!(user_id: user1.id, title: "Hating it", body: "Seriously hating it")

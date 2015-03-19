@@ -1,10 +1,14 @@
 class SessionsController < Devise::SessionsController
   respond_to :json
 
+
   def create
     super do |user|
       if request.format.json?
         data = {
+          firstName: user.first_name,
+          lastName: user.last_name,
+          id: user.id,
           token: user.authentication_token,
           email: user.email
         }
@@ -12,4 +16,5 @@ class SessionsController < Devise::SessionsController
       end
     end
   end
+
 end

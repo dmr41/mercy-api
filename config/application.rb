@@ -10,7 +10,7 @@ module DmrRantlyApi
     config.middleware.insert_before 0, "Rack::Cors" do
       allow do
         origins '*'
-        resource '*', :headers => :any, :methods => [:get, :post, :options, :put, :update, :delete, :create]
+        resource '*', :headers => :any, :methods => [:get, :post, :put, :update, :delete, :options]
       end
     end
     # Settings in config/environments/* take precedence over those specified here.
