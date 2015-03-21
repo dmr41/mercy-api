@@ -1,13 +1,17 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, except: [:index, :create]
   skip_before_filter :verify_authenticity_token
-  # after_action :authenticate_user!
-  respond_to :json
-  
-  def index
 
-    render json: User.all
+
+  def index
+    if params[:email].present?
+      @users = User.where(email: params[:email])
+    else
+      @users = User.all
+    end
+    render json: @users
   end
+
 
   def show
     render json: User.find(params[:id])
@@ -29,7 +33,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :created_at)
   end
 
 end

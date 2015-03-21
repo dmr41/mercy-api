@@ -1,10 +1,14 @@
 class SessionsController < Devise::SessionsController
+  before_action :authenticate_user!
   respond_to :json
 
 
   def create
     super do |user|
       if request.format.json?
+        puts "-------"
+        puts user
+        puts "------"
         data = {
           firstName: user.first_name,
           lastName: user.last_name,

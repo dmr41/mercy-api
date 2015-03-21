@@ -1,15 +1,22 @@
 class RantsController < ApplicationController
-  
+
   skip_before_filter  :verify_authenticity_token
   def index
     if params[:searchvale].present?
       @rants= Rant.where("title like ? OR body like ?", "%#{ params[:searchvale] }%", "%#{ params[:searchvale] }%")
-      @rants = @rants.order(:created_at)
+      @rants = @rants.order('created_at DESC')
       render json: @rants
     else
-      render json: Rant.order(:created_at)
+      render json: Rant.order('created_at DESC')
     end
   end
+
+  def create
+    @rant = Rant.new(rant_params)
+    @rant.save()
+    render json: @rant
+  end
+
 
   def update
     @rant = Rant.find(params[:id])
