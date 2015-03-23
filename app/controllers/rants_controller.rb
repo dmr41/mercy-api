@@ -7,7 +7,7 @@ class RantsController < ApplicationController
       @rants = @rants.order('created_at DESC')
       render json: @rants
     else
-      render json: Rant.order('created_at DESC')
+      render json: Rant.all
     end
   end
 
