@@ -4,7 +4,6 @@ class User < ActiveRecord::Base
 
   has_many :rants
 
-
  def ensure_authentication_token
    if authentication_token.blank?
      self.authentication_token = generate_authentication_token
