@@ -15,6 +15,8 @@ class ApplicationController < ActionController::Base
       user = user_email && User.find_by_email(user_email)
       if user && Devise.secure_compare(user.authentication_token, token)
         sign_in user, store: true
+      else
+        render json: {:success=>false, :message=>"Error with your login or password"}, :status=>401
       end
     end
   end
