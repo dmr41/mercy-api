@@ -23,9 +23,6 @@ class UsersController < ApplicationController
     if  @user.save
       sign_in @user
       render json: @user
-    else
-      redirect_to root_url
-    end
   end
 
   def destroy
