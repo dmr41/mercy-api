@@ -23,6 +23,7 @@ class UsersController < ApplicationController
     if  @user.save
       sign_in @user
       render json: @user
+    end
   end
 
   def destroy
